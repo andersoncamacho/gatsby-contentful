@@ -56,7 +56,7 @@ export const query = graphql`
                         priceOptions {
                             id
                             title
-                            amountPerMonth
+                            amountPerMon
                             description {
                                 raw
                             }

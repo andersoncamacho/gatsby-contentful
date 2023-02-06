@@ -8,6 +8,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     });
 };
 
+
 exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
     const {
@@ -15,24 +16,22 @@ exports.createPages = async ({ actions, graphql }) => {
     } = await graphql(`
         {
             contentfulBlog {
-                postsPerPage
-                slug
+            postsPerPage
+            slug
             }
-            allContentfulBlogPost(
-                sort: { fields: publishedDate, order: DESC }
-            ) {
-                edges {
-                    node {
-                        slug
-                        publishedDate(formatString: "DD MMM YYYY")
-                        pageContent {
-                            raw
-                        }
-                        description
-                        title
-                        contentful_id
+            allContentfulBlogPost(sort: {publishedDate: DESC}) {
+            edges {
+                node {
+                    slug    
+                    publishedDate(formatString: "DD/MM/YYYY")
+                    pageContent {
+                        raw
                     }
-                }
+                    description
+                    title
+                    contentful_id
+                    }
+            }
             }
         }
     `);
